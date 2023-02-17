@@ -1,6 +1,6 @@
-import { Center, Text } from '@chakra-ui/react';
+import { Center, Text, Image } from '@chakra-ui/react';
 
-import capybara from '@/assets/capybara.gif';
+import capybara from '@/assets/capybara.webp';
 
 type Props = {
   errorMessage: string;
@@ -12,10 +12,10 @@ const ErrorFallback: React.FC<Props> = ({
   enableCapybara = false,
 }) => (
   <Center flexDirection={'column'} data-testid='error-fallback'>
-    <Text fontSize={'s'} textAlign='center'>
+    <Text fontSize={['s', 'l', 'xl']} textAlign='center'>
       {errorMessage}
     </Text>
-    {enableCapybara && <img src={capybara} />}
+    {enableCapybara && <Image src={capybara} w={'600px'} borderRadius='full' />}
   </Center>
 );
 

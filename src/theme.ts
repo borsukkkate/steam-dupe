@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-import bg from './assets/bg.jpg';
+import bg from './assets/bg.webp';
 
 const a = {
   styles: {
