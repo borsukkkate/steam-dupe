@@ -12,13 +12,13 @@ function App() {
       <Center>
         <Routes>
           <Route
-            path='/category/:category'
+            path='/apps/category/:category'
             element={<AppsTabPanel appTabs={appTabs} />}
           />
           <Route path='/app/:appId' element={<AppPanel />} />;
           <Route
             path='*'
-            element={<Navigate to={`/category/${appTabs[0].route}`} />}
+            element={<Navigate to={`/apps/category/${appTabs[0].route}`} />}
           />
         </Routes>
       </Center>

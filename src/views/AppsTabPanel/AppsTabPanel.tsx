@@ -32,7 +32,7 @@ const AppsTabPanel: React.FC<Props> = ({ appTabs }) => {
 
   useEffect(() => {
     if (routes.every((ac) => ac != category)) {
-      navigate(`../category/${routes[0]}`);
+      navigate(`../apps/category/${routes[0]}`);
       return;
     }
 

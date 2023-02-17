@@ -42,7 +42,7 @@ const AppPanel: React.FC = () => {
             <>
               <GridItem area={'header'}>
                 <LinkButton
-                  path={`../category/${activeCategory}`}
+                  path={`../apps/category/${activeCategory}`}
                   title='Back'
                   disabled={!activeCategory}
                   icon={<ArrowBackIcon />}

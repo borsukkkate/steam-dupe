@@ -14,7 +14,7 @@ const NavigationMenu: React.FC<Props> = ({ appTabs }) => {
 
   const getLinks = (tabbed: boolean) =>
     appTabs.map(({ tabName, route }) => (
-      <Link to={`../category/${route}`} key={tabName}>
+      <Link to={`../apps/category/${route}`} key={tabName}>
         {tabbed ? (
           <Tab
             color={'blue.100'}
