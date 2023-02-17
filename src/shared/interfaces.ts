@@ -15,12 +15,12 @@ export interface IPlatforms {
   [Platforms.linux]: boolean;
 }
 
-interface ICategories {
+interface ICategory {
   id: number;
   description: string;
 }
 
-export interface IScreenshots {
+export interface IScreenshot {
   id: number;
   path_thumbnail: string;
   path_full: string;
@@ -31,7 +31,7 @@ export interface IMovieFormat {
   max: string;
 }
 
-export interface IMovies {
+export interface IMovie {
   id: number;
   name: string;
   thumbnail: string;
@@ -56,9 +56,9 @@ export interface IApp {
   publishers: string[];
   price_overview: IPriceOverview;
   platforms: IPlatforms;
-  categories: ICategories[];
-  screenshots: IScreenshots[];
-  movies: IMovies[];
+  categories: ICategory[];
+  screenshots: IScreenshot[];
+  movies: IMovie[];
   release_date: IReleaseDate;
   background: string;
 }
