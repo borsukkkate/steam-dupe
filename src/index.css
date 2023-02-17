@@ -1,0 +1,16 @@
+/* #root {
+  height: 100%;
+} */
+
+/* Hiding slider scrollbar */
+
+#medias-slider {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+}
+
+#media-slider::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+}
