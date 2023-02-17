@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Tabs, Flex } from '@chakra-ui/react';
 
 import { setActiveCategory, setSearchString } from '@/redux/reducers/appsSlice';
-import { AppCategories } from '@/shared/constants';
+import { AppCategories, Direction } from '@/shared/constants';
 import { RootState } from '@/redux/store/store';
 import SearchApps from '@/components/SearchApps/SearchApps';
 import AppsList from '@/views/AppsTabPanel/AppsList/AppsList';
 
 import NavigationMenu from './NavigationMenu/NavigationMenu';
+import NavigationButton from '@/components/common/NavigationButton/NavigationButton';
 
 export interface ITab {
   tabName: string;
@@ -52,7 +53,8 @@ const AppsTabPanel: React.FC<Props> = ({ appTabs }) => {
     >
       <>
         <NavigationMenu appTabs={appTabs} />
-        <Flex justifyContent={'flex-end'}>
+        <Flex justifyContent={'space-between'}>
+          <NavigationButton direction={Direction.BACK} />
           <SearchApps />
         </Flex>
         {activeCategory && (

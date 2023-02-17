@@ -58,3 +58,8 @@ export enum MediaType {
   Video = 'video',
   Picture = 'picture',
 }
+
+export enum Direction {
+  FORWARD = 'forward',
+  BACK = 'back',
+}

@@ -21,6 +21,8 @@ import MediaGallery from '@/components/common/MediaGallery/MediaGallery';
 import useApp from './hooks/useApp';
 import { useSlides } from './hooks/useSlides';
 import gridLayout from './layout';
+import NavigationButton from '@/components/common/NavigationButton/NavigationButton';
+import { Direction } from '@/shared/constants';
 
 const AppPanel: React.FC = () => {
   useEffect(() => {
@@ -41,12 +43,7 @@ const AppPanel: React.FC = () => {
           {app && (
             <>
               <GridItem area={'header'}>
-                <LinkButton
-                  path={`../apps/category/${activeCategory}`}
-                  title='Back'
-                  disabled={!activeCategory}
-                  icon={<ArrowBackIcon />}
-                />
+                <NavigationButton direction={Direction.BACK} />
                 <Text
                   fontSize={['xl', 'xl', '2xl', '3xl', '4xl']}
                   fontWeight={600}

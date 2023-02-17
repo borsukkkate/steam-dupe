@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Flex, Image } from '@chakra-ui/react';
+
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { Direction } from '@/shared/constants';
 
 type Props = {
   slides: { id: string | number; src: string }[];
@@ -8,11 +10,6 @@ type Props = {
   onSlideSelect: (id: string | number) => void;
   withControls?: boolean;
 };
-
-enum Direction {
-  FORWARD = 'forward',
-  BACK = 'back',
-}
 
 const Slider: React.FC<Props> = ({
   slides,
