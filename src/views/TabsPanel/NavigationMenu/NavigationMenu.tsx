@@ -4,8 +4,13 @@ import { TabList, Tab, useMediaQuery, Text } from '@chakra-ui/react';
 
 import Menu from '@/components/common/Menu/Menu';
 
+interface ITab {
+  tabName: string;
+  route: string;
+}
+
 type Props = {
-  appTabs: any[];
+  appTabs: ITab[];
   index: number;
 };
 

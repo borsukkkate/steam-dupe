@@ -1,14 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import {
-  Box,
-  Fade,
-  Image,
-  Skeleton,
-  SlideFade,
-  useMediaQuery,
-  useStyleConfig,
-} from '@chakra-ui/react';
+import { Box, Image, useMediaQuery, useStyleConfig } from '@chakra-ui/react';
 
 import { MediaType } from '@/shared/constants';
 import { ISlide } from '@/shared/interfaces';
@@ -18,15 +10,15 @@ import VideoPlayer from '@/components/common/VideoPlayer/VideoPlayer';
 
 type Props = {
   slides: ISlide[];
+  setIsLoaded: (loaded: boolean) => void;
 };
 
-const MediaGallery: React.FC<Props> = ({ slides }) => {
+const MediaGallery: React.FC<Props> = ({ slides, setIsLoaded }) => {
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
   const styles = useStyleConfig('Containers', {
     variant: 'regular',
   });
   const [activeMedia, setActiveMedia] = useState<ISlide | undefined>();
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const sliderSlides = useMemo(
     () => slides.map(({ id, thumbnailSrc }) => ({ id, src: thumbnailSrc })),
@@ -52,46 +44,35 @@ const MediaGallery: React.FC<Props> = ({ slides }) => {
   };
 
   return (
-    <Fade in={isLoaded}>
-      <Box __css={styles}>
-        {activeMedia!.type === MediaType.Picture && (
-          <SlideFade in={isLoaded}>
+    <Box __css={styles}>
+      {activeMedia!.type === MediaType.Picture && (
+        <Image
+          fallback={
             <Image
-              fallback={
-                <Image
-                  src={activeMedia!.thumbnailSrc}
-                  width={'100%'}
-                  onLoad={() => setIsLoaded(true)}
-                  fallback={
-                    <Skeleton
-                      height={isLargerThan800 ? '100px' : '300px'}
-                    ></Skeleton>
-                  }
-                />
-              }
-              src={
-                isLargerThan800
-                  ? activeMedia!.media.src
-                  : activeMedia!.thumbnailSrc
-              }
+              src={activeMedia!.thumbnailSrc}
               width={'100%'}
+              onLoad={() => setIsLoaded(true)}
             />
-          </SlideFade>
-        )}
-        {activeMedia!.type === MediaType.Video && (
-          <VideoPlayer
-            src={activeMedia!.media.src}
-            cover={activeMedia!.thumbnailSrc}
-            format={activeMedia!.media.format!}
-          />
-        )}
-        <Slider
-          slides={sliderSlides}
-          activeSlideId={activeMedia!.id}
-          onSlideSelect={onSlideSelect}
+          }
+          src={
+            isLargerThan800 ? activeMedia!.media.src : activeMedia!.thumbnailSrc
+          }
+          width={'100%'}
         />
-      </Box>
-    </Fade>
+      )}
+      {activeMedia!.type === MediaType.Video && (
+        <VideoPlayer
+          src={activeMedia!.media.src}
+          cover={activeMedia!.thumbnailSrc}
+          format={activeMedia!.media.format!}
+        />
+      )}
+      <Slider
+        slides={sliderSlides}
+        activeSlideId={activeMedia!.id}
+        onSlideSelect={onSlideSelect}
+      />
+    </Box>
   );
 };
 

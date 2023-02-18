@@ -13,6 +13,9 @@ const VideoPlayer: React.FC<Props> = ({ src, cover, format }) => (
   <Box>
     <Suspense fallback={<Spinner show={true} />}>
       <video controls src={src} width='100%' poster={cover}>
+        {/* 
+          TODO: for accessibilty reasons <track></track> should be added
+        */}
         <source src={src} type={format} />
       </video>
     </Suspense>

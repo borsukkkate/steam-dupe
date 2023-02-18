@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Center,
+  Fade,
   Grid,
   GridItem,
   List,
@@ -27,10 +27,11 @@ const AppPanel: React.FC = () => {
   const styles = useStyleConfig('Containers', { variant: 'page' });
   const { app, status } = useApp();
   const { slides } = useSlides(app);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <Center>
-      <StatefulWrapper status={status}>
+    <StatefulWrapper status={status}>
+      <Fade in={isLoaded}>
         <Grid __css={styles}>
           {app && (
             <>
@@ -38,7 +39,7 @@ const AppPanel: React.FC = () => {
                 <Text variant={'header'}>{app.name}</Text>
               </GridItem>
               <GridItem area={'main'}>
-                <MediaGallery slides={slides} />
+                <MediaGallery slides={slides} setIsLoaded={setIsLoaded} />
                 <CollapsibleText text={app.about_the_game} title='About' />
               </GridItem>
               <GridItem area={'aside'}>
@@ -67,8 +68,8 @@ const AppPanel: React.FC = () => {
             </>
           )}
         </Grid>
-      </StatefulWrapper>
-    </Center>
+      </Fade>
+    </StatefulWrapper>
   );
 };
 

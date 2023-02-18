@@ -9,6 +9,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:jsx-a11y/recommended',
   ],
   settings: {
     react: {
@@ -19,13 +20,8 @@ module.exports = {
     browser: true,
     es2022: true,
     'vitest-globals/env': true,
-    'cypress/globals': true,
   },
   overrides: [
-    {
-      files: ['cypress/e2e/**.{cy,spec}.{js,ts,jsx,tsx}'],
-      extends: ['plugin:cypress/recommended'],
-    },
     {
       files: ['*.tsx, *.jsx'],
       rules: {
@@ -49,22 +45,17 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'cypress',
-    'prettier',
-    'simple-import-sort',
-  ],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-unused-vars': 'off',
-    'no-undef': process.env.NODE_ENV === 'production' ? 'warn' : 'warn',
+    'no-undef': 'warn',
     'no-unreachable': process.env.NODE_ENV === 'production' ? 'warn' : 'warn',
     'prettier/prettier': ['error', { singleQuote: true }],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'react/prop-types': 'off',
+    'jsx-a11y/media-has-caption': 'warn',
   },
 };
