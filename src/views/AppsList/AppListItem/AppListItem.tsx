@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   GridItem,
   Text,
-  ListItem,
   Image,
-  useMediaQuery,
   SlideFade,
+  useStyleConfig,
 } from '@chakra-ui/react';
 
 import { IApp } from '@/shared/interfaces';
 import PriceTag from '@/components/common/PriceTag/PriceTag';
 import AvailablePlatforms from '@/components/Platforms/Platforms';
 import CommaSeparatedList from '@/components/common/CommaSeparatedList/CommaSeparatedList';
-
-import { gridLayout } from './layout';
 
 type Props = {
   appInfo: Pick<
@@ -27,11 +24,11 @@ const AppListItem: React.FC<Props> = ({
   appInfo: { name, price_overview, header_image, developers, platforms },
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const styles = useStyleConfig('Containers', { variant: 'listItem' });
 
   return (
     <SlideFade in={isLoaded}>
       <GridItem
-        listStyleType='none'
         m={0}
         mb={1}
         bgColor='#ffffff12'
@@ -41,8 +38,8 @@ const AppListItem: React.FC<Props> = ({
           transition: 'transform 200ms',
         }}
       >
-        <Grid {...gridLayout} gap={4} position={'relative'}>
-          <GridItem display='flex' area={'thumbnail'}>
+        <Grid __css={styles} position={'relative'}>
+          <GridItem area={'thumbnail'}>
             <Image
               src={header_image}
               alt='app thumbnail image'
@@ -53,13 +50,7 @@ const AppListItem: React.FC<Props> = ({
             />
           </GridItem>
           <GridItem pl={4} pr={4} area='info'>
-            <Text
-              fontSize={['m', 'l']}
-              fontWeight='semibold'
-              color={'blue.100'}
-            >
-              {name}
-            </Text>
+            <Text variant={'title'}>{name}</Text>
             <AvailablePlatforms platforms={platforms} title='Available on: ' />
             <CommaSeparatedList listItems={developers} title='Developed by: ' />
           </GridItem>

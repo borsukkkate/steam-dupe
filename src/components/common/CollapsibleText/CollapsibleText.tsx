@@ -23,25 +23,9 @@ const CollapsibleText: React.FC<Props> = ({ text, title }) => {
 
   return (
     <>
-      <Flex
-        alignItems={'center'}
-        justifyContent={'space-between'}
-        mt={4}
-        mb={4}
-      >
-        {Boolean(title) && (
-          <Text fontSize={'xl'} fontWeight={600} color={'blue.100'}>
-            {title}
-          </Text>
-        )}
-        <Button
-          size='xs'
-          onClick={handleToggle}
-          mt='1rem'
-          variant='link'
-          fontWeight={400}
-          color={'blue.100'}
-        >
+      <Flex alignItems={'center'} justifyContent={'space-between'} my={4}>
+        {Boolean(title) && <Text variant='title'>{title}</Text>}
+        <Button onClick={handleToggle} mt='1rem' variant='secondary'>
           Show {show ? 'Less' : 'More'}
         </Button>
       </Flex>

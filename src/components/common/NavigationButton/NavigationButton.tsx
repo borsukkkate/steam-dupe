@@ -19,11 +19,8 @@ const NavigationButton: React.FC<Props> = ({ direction }) => {
 
   return (
     <Button
-      size='sm'
-      variant='link'
+      variant='secondary'
       leftIcon={shouldNavigateBack ? <ArrowBackIcon /> : <ArrowRightIcon />}
-      color={'blue.100'}
-      fontWeight={400}
       onClick={() => goTo(shouldNavigateBack)}
     >
       {shouldNavigateBack ? 'Back' : 'Forward'}

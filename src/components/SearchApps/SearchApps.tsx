@@ -5,6 +5,7 @@ import { setSearchString } from '@/redux/reducers/appsSlice';
 import { RootState } from '@/redux/store/store';
 
 import SearchInput from '../common/SearchInput/SearchInput';
+import { Flex } from '@chakra-ui/react';
 
 const SearchApps = () => {
   const dispatch = useDispatch();
@@ -21,11 +22,13 @@ const SearchApps = () => {
   };
 
   return (
-    <SearchInput
-      onInputChange={onInputChange}
-      searchString={searchString}
-      placeholder='Search app'
-    />
+    <Flex my={4}>
+      <SearchInput
+        onInputChange={onInputChange}
+        searchString={searchString}
+        placeholder='Search app'
+      />
+    </Flex>
   );
 };
 

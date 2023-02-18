@@ -12,7 +12,7 @@ const ErrorFallback: React.FC<Props> = ({
   enableCapybara = false,
 }) => (
   <Center flexDirection={'column'} data-testid='error-fallback'>
-    <Text fontSize={['s', 'l', 'xl']} textAlign='center'>
+    <Text variant='header' textAlign='center'>
       {errorMessage}
     </Text>
     {enableCapybara && <Image src={capybara} w={'600px'} borderRadius='full' />}

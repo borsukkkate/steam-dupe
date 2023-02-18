@@ -14,22 +14,17 @@ type Props = {
 };
 
 const Menu: React.FC<Props> = ({ menuItems }) => (
-  <CUIMenu>
+  <CUIMenu variant='transparent'>
     <MenuButton
       as={IconButton}
       aria-label='Options'
       icon={<HamburgerIcon />}
-      variant='outline'
-      bg='blackAlpha.900'
-      _active={{ bg: 'blackAlpha.900' }}
-      borderColor={'whiteAlpha.400'}
+      variant='transparent'
       data-testid='categories-menu-button'
     />
-    <MenuList bg='blackAlpha.900' borderColor={'whiteAlpha.400'}>
+    <MenuList>
       {menuItems.map((mi) => (
-        <MenuItem key={uuid()} bg='blackAlpha.900'>
-          {mi}
-        </MenuItem>
+        <MenuItem key={uuid()}>{mi}</MenuItem>
       ))}
     </MenuList>
   </CUIMenu>

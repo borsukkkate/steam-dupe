@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import {
   Center,
   Grid,
@@ -8,49 +7,35 @@ import {
   ListIcon,
   ListItem,
   Text,
+  useStyleConfig,
 } from '@chakra-ui/react';
-import { ArrowBackIcon, CheckCircleIcon } from '@chakra-ui/icons';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 
-import { RootState } from '@/redux/store/store';
 import StatefulWrapper from '@/components/common/StatefulWrapper/StatefulWrapper';
 import AppInfo from '@/views/AppPanel/AppInfo/AppInfo';
 import CollapsibleText from '@/components/common/CollapsibleText/CollapsibleText';
-import LinkButton from '@/components/common/LinkButton/LinkButton';
 import MediaGallery from '@/components/common/MediaGallery/MediaGallery';
 
 import useApp from './hooks/useApp';
 import { useSlides } from './hooks/useSlides';
-import gridLayout from './layout';
-import NavigationButton from '@/components/common/NavigationButton/NavigationButton';
-import { Direction } from '@/shared/constants';
 
 const AppPanel: React.FC = () => {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
 
-  const activeCategory = useSelector(
-    (state: RootState) => state.apps.activeCategory
-  );
-
+  const styles = useStyleConfig('Containers', { variant: 'page' });
   const { app, status } = useApp();
   const { slides } = useSlides(app);
 
   return (
     <Center>
       <StatefulWrapper status={status}>
-        <Grid {...gridLayout} p={6} bg='blackAlpha.700' borderRadius={10}>
+        <Grid __css={styles}>
           {app && (
             <>
               <GridItem area={'header'}>
-                <NavigationButton direction={Direction.BACK} />
-                <Text
-                  fontSize={['xl', 'xl', '2xl', '3xl', '4xl']}
-                  fontWeight={600}
-                  color={'blue.200'}
-                >
-                  {app.name}
-                </Text>
+                <Text variant={'header'}>{app.name}</Text>
               </GridItem>
               <GridItem area={'main'}>
                 <MediaGallery slides={slides} />
@@ -67,13 +52,7 @@ const AppPanel: React.FC = () => {
                     publishers: app.publishers,
                   }}
                 />
-                <Text
-                  fontSize={'xl'}
-                  fontWeight={500}
-                  color={'blue.100'}
-                  mb={2}
-                  mt={4}
-                >
+                <Text variant={'title'} mb={2} mt={4}>
                   Is this game relevant to you?
                 </Text>
                 <List>

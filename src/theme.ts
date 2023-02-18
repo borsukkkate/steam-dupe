@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import bg from './assets/bg.webp';
+import components from './theme-components';
 
 const a = {
   styles: {
@@ -11,6 +12,7 @@ const a = {
       },
     }),
   },
+  components,
 };
 
 const theme = extendTheme(a);

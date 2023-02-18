@@ -13,7 +13,7 @@ type Props = {
 const StatefulWrapper: React.FC<Props> = ({ status, children }) => {
   if (status === PENDING) {
     return (
-      <Center mt={10} data-testid='loading-spinner'>
+      <Center m={50} data-testid='loading-spinner'>
         <Spinner show={true} delay={100} />
       </Center>
     );
@@ -31,7 +31,7 @@ const StatefulWrapper: React.FC<Props> = ({ status, children }) => {
   return (
     <Suspense
       fallback={
-        <Center mt={10}>
+        <Center m={50}>
           <Spinner show={true} delay={300} />
         </Center>
       }

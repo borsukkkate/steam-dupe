@@ -1,4 +1,4 @@
-import { Badge, Box, Text } from '@chakra-ui/react';
+import { Badge, Box, Center, Text, useStyleConfig } from '@chakra-ui/react';
 
 type Props = {
   price: number | string;
@@ -15,24 +15,12 @@ const PriceTag: React.FC<Props> = ({
   currency,
   stick = false,
 }) => {
-  const containerStyles = stick && {
-    display: 'flex',
-    alignItems: 'center',
-    position: 'absolute',
-    padding: 2,
-    top: 0,
-    background: 'blackAlpha.800',
-    right: 0,
-  };
+  const styles = useStyleConfig('Containers', {
+    variant: stick ? 'stick' : 'regular',
+  });
 
   return (
-    <Box
-      {...containerStyles}
-      display='flex'
-      alignItems='center'
-      position={stick ? 'absolute' : 'inherit'}
-      pr={4}
-    >
+    <Center __css={styles}>
       {Boolean(discount && discount != 0) && (
         <Badge
           mr='3'
@@ -48,8 +36,7 @@ const PriceTag: React.FC<Props> = ({
         {Boolean(oldPrice && discount && discount != 0) && (
           <Text
             textDecoration='line-through'
-            fontSize={'xs'}
-            color={'blue.100'}
+            variant={'secondary-title'}
             data-testid='old-price'
           >
             {oldPrice} {currency}
@@ -59,7 +46,7 @@ const PriceTag: React.FC<Props> = ({
           {price} {currency}
         </Text>
       </Box>
-    </Box>
+    </Center>
   );
 };
 

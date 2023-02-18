@@ -20,9 +20,9 @@ const AvailablePlatforms: React.FC<Props> = ({ platforms, title }) => {
   );
 
   return (
-    <Flex mt='1' mb='1' alignItems={'center'}>
+    <Flex my='1' alignItems={'center'}>
       {title && (
-        <Text fontSize='xs' mr={2} color={'gray.400'}>
+        <Text variant='secondary-title' mr={2}>
           {title}
         </Text>
       )}

@@ -12,7 +12,7 @@ const SearchInput: React.FC<Props> = ({
   onInputChange,
   searchString = '',
 }) => (
-  <InputGroup mt={'2'} mb={'2'} w='fit-content'>
+  <InputGroup w='fit-content'>
     <InputLeftElement pointerEvents='none'>
       <SearchIcon color='blue.100' />
     </InputLeftElement>

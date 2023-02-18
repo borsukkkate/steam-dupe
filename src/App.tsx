@@ -1,27 +1,47 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-
-import { Box, Center } from '@chakra-ui/react';
+import { Suspense } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store/store';
+import { Box, useStyleConfig } from '@chakra-ui/react';
 
 import { appTabs } from '@/shared/constants';
-import AppsTabPanel from '@/views/AppsTabPanel/AppsTabPanel';
+import AppsList from '@/views/AppsList/AppsList';
 import AppPanel from '@/views/AppPanel/AppPanel';
+import TabsPanel from '@/views/TabsPanel/TabsPanel';
 
 function App() {
+  const styles = useStyleConfig('Containers', { variant: 'main' });
+  const activeCategory = useSelector(
+    (state: RootState) => state.apps.activeCategory
+  );
+
   return (
-    <Box w='100%' h='100%' p={6}>
-      <Center>
-        <Routes>
+    <Box __css={styles}>
+      <Routes>
+        <>
           <Route
             path='/apps/category/:category'
-            element={<AppsTabPanel appTabs={appTabs} />}
+            element={
+              <TabsPanel>
+                <Suspense>{activeCategory && <AppsList />}</Suspense>
+              </TabsPanel>
+            }
           />
-          <Route path='/app/:appId' element={<AppPanel />} />;
+          <Route
+            path='/app/:appId'
+            element={
+              <TabsPanel>
+                <AppPanel />
+              </TabsPanel>
+            }
+          />
+          ;
           <Route
             path='*'
             element={<Navigate to={`/apps/category/${appTabs[0].route}`} />}
           />
-        </Routes>
-      </Center>
+        </>
+      </Routes>
     </Box>
   );
 }

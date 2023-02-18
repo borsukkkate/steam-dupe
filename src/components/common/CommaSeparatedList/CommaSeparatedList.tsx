@@ -8,15 +8,13 @@ type Props = {
 
 const CommaSeparatedList: React.FC<Props> = ({ title, listItems }) => {
   return (
-    <Flex alignItems={'center'}>
+    <Flex alignItems='center'>
       {title && (
-        <Text fontSize='xs' mr={2} color={'gray.400'}>
+        <Text variant='secondary-title' mr={2}>
           {title}
         </Text>
       )}
-      <Text fontSize='sm' color={'blue.300'} fontWeight={500}>
-        {listItems.join(',')}
-      </Text>
+      <Text variant={'info'}>{listItems.join(',')}</Text>
     </Flex>
   );
 };
