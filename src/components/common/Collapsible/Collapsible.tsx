@@ -1,25 +1,15 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Button, Collapse, Flex, Text } from '@chakra-ui/react';
-import { v4 as uuid } from 'uuid';
 
 type Props = {
-  text: string;
+  children: ReactElement;
   title?: string;
 };
 
-const CollapsibleText: React.FC<Props> = ({ text, title }) => {
+const Collapsible: React.FC<Props> = ({ children, title }) => {
   const [show, setShow] = useState(false);
 
   const handleToggle = () => setShow(!show);
-
-  /* 
-    NOTE: using dangerouslySetInnerHTML - is not the best option due to possible XSS attack
-    As the alternative - to use external library
-
-    OR THE BEST SOLUTION IS:
-
-    Refactoring incoming data to be sent in different format
-   */
 
   return (
     <>
@@ -31,10 +21,10 @@ const CollapsibleText: React.FC<Props> = ({ text, title }) => {
       </Flex>
 
       <Collapse startingHeight={200} in={show}>
-        <Text key={uuid()} mb={2} dangerouslySetInnerHTML={{ __html: text }} />
+        {children}
       </Collapse>
     </>
   );
 };
 
-export default CollapsibleText;
+export default Collapsible;

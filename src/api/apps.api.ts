@@ -3,7 +3,6 @@ import { IApp } from '@/shared/interfaces';
 import api from './api';
 
 export const getApplicationsList = (resource: AppsApiRoutes) => {
-  //return Promise.reject();
   return api.get<IApp[]>(`?tab=${resource}`);
 };
 

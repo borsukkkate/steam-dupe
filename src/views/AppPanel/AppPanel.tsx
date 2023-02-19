@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Grid,
   GridItem,
@@ -12,7 +12,7 @@ import { CheckCircleIcon } from '@chakra-ui/icons';
 
 import StatefulWrapper from '@/components/common/StatefulWrapper/StatefulWrapper';
 import AppInfo from '@/views/AppPanel/AppInfo/AppInfo';
-import CollapsibleText from '@/components/common/CollapsibleText/CollapsibleText';
+import Collapsible from '@/components/common/Collapsible/Collapsible';
 import MediaGallery from '@/components/common/MediaGallery/MediaGallery';
 
 import useApp from './hooks/useApp';
@@ -37,7 +37,11 @@ const AppPanel: React.FC = () => {
             </GridItem>
             <GridItem area={'main'}>
               <MediaGallery slides={slides} />
-              <CollapsibleText text={app.about_the_game} title='About' />
+              <Collapsible title='About'>
+                <Text
+                  dangerouslySetInnerHTML={{ __html: app.about_the_game }}
+                />
+              </Collapsible>
             </GridItem>
             <GridItem area={'aside'}>
               <AppInfo

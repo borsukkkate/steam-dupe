@@ -9,11 +9,13 @@ export interface AppsState {
   [AppCategories.TOP_SELLERS]: IApp[];
   [AppCategories.UPCOMING]: IApp[];
   activeCategory: AppCategories | null;
+  activeApp: IApp | null;
   searchString: string;
 }
 
 const initialState: AppsState = {
   searchString: '',
+  activeApp: null,
   activeCategory: null,
   [AppCategories.BEING_PLAYED]: [],
   [AppCategories.NEW_AND_TRENDING]: [],
@@ -41,10 +43,17 @@ export const appsSlice = createSlice({
     setActiveCategory: (state, action: PayloadAction<AppCategories>) => {
       state.activeCategory = action.payload;
     },
+    setActiveApp: (state, action: PayloadAction<any>) => {
+      state.activeApp = action.payload;
+    },
   },
 });
 
-export const { setAppsByCategory, setActiveCategory, setSearchString } =
-  appsSlice.actions;
+export const {
+  setAppsByCategory,
+  setActiveCategory,
+  setSearchString,
+  setActiveApp,
+} = appsSlice.actions;
 
 export default appsSlice.reducer;
