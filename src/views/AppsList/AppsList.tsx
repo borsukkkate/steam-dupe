@@ -1,21 +1,27 @@
 import { Link } from 'react-router-dom';
 
-import { Grid, useStyleConfig } from '@chakra-ui/react';
+import { Flex, Grid, useStyleConfig } from '@chakra-ui/react';
 
 import StatefulWrapper from '@/components/common/StatefulWrapper/StatefulWrapper';
 import AppListItem from './AppListItem/AppListItem';
 import useApps from './hooks/useApps';
-import SearchApps from '@/components/SearchApps/SearchApps';
+import SearchInput from '@/components/common/SearchInput/SearchInput';
 
 const AppsList = () => {
-  const { status, apps } = useApps();
+  const { status, apps, onAppSearch, appSearchString } = useApps();
   const styles = useStyleConfig('Containers', { variant: 'list' });
 
   return (
     <StatefulWrapper status={status}>
       <>
-        <SearchApps />
-        <Grid __css={styles}>
+        <Flex my={4}>
+          <SearchInput
+            onInputChange={onAppSearch}
+            searchString={appSearchString}
+            placeholder='Search app'
+          />
+        </Flex>
+        <Grid __css={styles} data-testid='app-list'>
           {apps.map(
             ({
               _id,
