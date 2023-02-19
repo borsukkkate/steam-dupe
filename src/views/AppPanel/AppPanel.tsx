@@ -20,7 +20,7 @@ import { useSlides } from './hooks/useSlides';
 
 const AppPanel: React.FC = () => {
   useEffect(() => {
-    window.scrollTo({ top: 0 });
+    window.scrollTo(0, 0);
   }, []);
 
   const styles = useStyleConfig('Containers', { variant: 'page' });
