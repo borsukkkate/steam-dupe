@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setAppsByCategory, setSearchString } from '@/redux/reducers/appsSlice';
 import { RootState } from '@/redux/store/store';
-import api from '@/api/apps.api';
+
 import { useApi } from '@/api/hooks/useApi';
 import { ApiCategoryMap } from '@/shared/constants';
 import { IApp } from '@/shared/interfaces';
+import { getApplicationsList } from '@/api/apps.api';
 
 const useApps = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const useApps = () => {
   );
 
   const { init, status } = useApi(
-    () => api.getApplicationsList(ApiCategoryMap[activeCategory!]),
+    () => getApplicationsList(ApiCategoryMap[activeCategory!]),
     (apps: IApp[]) => {
       dispatch(
         setAppsByCategory({
