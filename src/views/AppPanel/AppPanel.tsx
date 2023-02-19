@@ -27,48 +27,45 @@ const AppPanel: React.FC = () => {
   const styles = useStyleConfig('Containers', { variant: 'page' });
   const { app, status } = useApp();
   const { slides } = useSlides(app);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <StatefulWrapper status={status}>
-      <Fade in={isLoaded}>
-        <Grid __css={styles}>
-          {app && (
-            <>
-              <GridItem area={'header'}>
-                <Text variant={'header'}>{app.name}</Text>
-              </GridItem>
-              <GridItem area={'main'}>
-                <MediaGallery slides={slides} setIsLoaded={setIsLoaded} />
-                <CollapsibleText text={app.about_the_game} title='About' />
-              </GridItem>
-              <GridItem area={'aside'}>
-                <AppInfo
-                  info={{
-                    cover: app.header_image,
-                    description: app.short_description,
-                    platforms: app.platforms,
-                    developers: app.developers,
-                    price_overview: app.price_overview,
-                    publishers: app.publishers,
-                  }}
-                />
-                <Text variant={'title'} mb={2} mt={4}>
-                  Is this game relevant to you?
-                </Text>
-                <List>
-                  {app.categories.map((c) => (
-                    <ListItem key={c.id} p={2} background={'#bee3f81a'} mb={2}>
-                      <ListIcon as={CheckCircleIcon} color='blue.300' />
-                      {c.description}
-                    </ListItem>
-                  ))}
-                </List>
-              </GridItem>
-            </>
-          )}
-        </Grid>
-      </Fade>
+      <Grid __css={styles}>
+        {app && (
+          <>
+            <GridItem area={'header'}>
+              <Text variant={'header'}>{app.name}</Text>
+            </GridItem>
+            <GridItem area={'main'}>
+              <MediaGallery slides={slides} />
+              <CollapsibleText text={app.about_the_game} title='About' />
+            </GridItem>
+            <GridItem area={'aside'}>
+              <AppInfo
+                info={{
+                  cover: app.header_image,
+                  description: app.short_description,
+                  platforms: app.platforms,
+                  developers: app.developers,
+                  price_overview: app.price_overview,
+                  publishers: app.publishers,
+                }}
+              />
+              <Text variant={'title'} mb={2} mt={4}>
+                Is this game relevant to you?
+              </Text>
+              <List>
+                {app.categories.map((c) => (
+                  <ListItem key={c.id} p={2} background={'#bee3f81a'} mb={2}>
+                    <ListIcon as={CheckCircleIcon} color='blue.300' />
+                    {c.description}
+                  </ListItem>
+                ))}
+              </List>
+            </GridItem>
+          </>
+        )}
+      </Grid>
     </StatefulWrapper>
   );
 };

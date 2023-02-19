@@ -1,6 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { Box, Image, useMediaQuery, useStyleConfig } from '@chakra-ui/react';
+import {
+  Box,
+  Image,
+  Skeleton,
+  useMediaQuery,
+  useStyleConfig,
+} from '@chakra-ui/react';
 
 import { MediaType } from '@/shared/constants';
 import { ISlide } from '@/shared/interfaces';
@@ -10,10 +16,10 @@ import VideoPlayer from '@/components/common/VideoPlayer/VideoPlayer';
 
 type Props = {
   slides: ISlide[];
-  setIsLoaded: (loaded: boolean) => void;
 };
 
-const MediaGallery: React.FC<Props> = ({ slides, setIsLoaded }) => {
+const MediaGallery: React.FC<Props> = ({ slides }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
   const styles = useStyleConfig('Containers', {
     variant: 'regular',
@@ -46,19 +52,29 @@ const MediaGallery: React.FC<Props> = ({ slides, setIsLoaded }) => {
   return (
     <Box __css={styles}>
       {activeMedia!.type === MediaType.Picture && (
-        <Image
-          fallback={
-            <Image
-              src={activeMedia!.thumbnailSrc}
-              width={'100%'}
-              onLoad={() => setIsLoaded(true)}
-            />
-          }
-          src={
-            isLargerThan800 ? activeMedia!.media.src : activeMedia!.thumbnailSrc
-          }
-          width={'100%'}
-        />
+        <Skeleton
+          w='100%'
+          startColor='blackAlpha.300'
+          endColor='whiteAlpha.300'
+          isLoaded={isLoaded}
+          fadeDuration={1}
+        >
+          <Image
+            fallback={
+              <Image
+                src={activeMedia!.thumbnailSrc}
+                width={'100%'}
+                onLoad={() => setIsLoaded(true)}
+              />
+            }
+            src={
+              isLargerThan800
+                ? activeMedia!.media.src
+                : activeMedia!.thumbnailSrc
+            }
+            width={'100%'}
+          />
+        </Skeleton>
       )}
       {activeMedia!.type === MediaType.Video && (
         <VideoPlayer
