@@ -43,6 +43,10 @@ const useApp = () => {
     } else {
       init();
     }
+
+    () => {
+      dispatch(setActiveApp(null));
+    };
   }, []);
 
   return {
