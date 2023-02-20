@@ -40,7 +40,7 @@ const AppListItem: React.FC<Props> = ({
         data-testid='app-list-item'
       >
         <Grid __css={styles} position={'relative'}>
-          <GridItem area={'thumbnail'}>
+          <GridItem area={'thumbnail'} data-testid='thumbnail'>
             <Image
               src={header_image}
               alt='app thumbnail image'
@@ -50,7 +50,7 @@ const AppListItem: React.FC<Props> = ({
               onLoad={() => setIsLoaded(true)}
             />
           </GridItem>
-          <GridItem pl={4} pr={4} area='info'>
+          <GridItem pl={4} pr={4} area='info' data-testid='app-item-info'>
             <Text variant={'title'}>{name}</Text>
             <AvailablePlatforms platforms={platforms} title='Available on: ' />
             <CommaSeparatedList listItems={developers} title='Developed by: ' />

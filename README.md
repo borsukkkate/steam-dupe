@@ -22,6 +22,13 @@ Run for a dev server:
 npm run dev
 ```
 
+## Unit testing
+Run for unit testing:
+
+```
+npm run test:unit
+```
+
 ## Build
 Run to build:
 

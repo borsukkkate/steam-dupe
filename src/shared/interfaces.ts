@@ -54,7 +54,7 @@ export interface IApp {
   website: string;
   developers: string[];
   publishers: string[];
-  price_overview: IPriceOverview;
+  price_overview?: IPriceOverview;
   platforms: IPlatforms;
   categories: ICategory[];
   screenshots: IScreenshot[];

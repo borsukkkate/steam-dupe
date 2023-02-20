@@ -20,7 +20,7 @@ const PriceTag: React.FC<Props> = ({
   });
 
   return (
-    <Center __css={styles}>
+    <Center __css={styles} data-testid='price-tag'>
       {Boolean(discount && discount != 0) && (
         <Badge
           mr='3'
