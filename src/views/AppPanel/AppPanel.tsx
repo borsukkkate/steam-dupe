@@ -29,13 +29,13 @@ const AppPanel: React.FC = () => {
 
   return (
     <StatefulWrapper status={status}>
-      <Grid __css={styles}>
+      <Grid __css={styles} data-testid='app-panel'>
         {app && (
           <>
-            <GridItem area={'header'}>
+            <GridItem area={'header'} data-testid='header'>
               <Text variant={'header'}>{app.name}</Text>
             </GridItem>
-            <GridItem area={'main'}>
+            <GridItem area={'main'} data-testid='about'>
               <MediaGallery slides={slides} />
               <Collapsible title='About'>
                 <Text
@@ -43,7 +43,7 @@ const AppPanel: React.FC = () => {
                 />
               </Collapsible>
             </GridItem>
-            <GridItem area={'aside'}>
+            <GridItem area={'aside'} data-testid='app-info'>
               <AppInfo
                 info={{
                   cover: app.header_image,

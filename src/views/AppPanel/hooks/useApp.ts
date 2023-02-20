@@ -9,7 +9,7 @@ import { RootState } from '@/redux/store/store';
 import { IApp } from '@/shared/interfaces';
 import { setActiveApp } from '@/redux/reducers/appsSlice';
 
-const useApp = () => {
+export const useApp = () => {
   const { appId } = useParams();
   const dispatch = useDispatch();
   const app = useSelector((state: RootState) => state.apps.activeApp);

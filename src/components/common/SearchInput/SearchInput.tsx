@@ -17,6 +17,7 @@ const SearchInput: React.FC<Props> = ({
       <SearchIcon color='blue.100' />
     </InputLeftElement>
     <Input
+      data-testid='search-input'
       placeholder={placeholder}
       htmlSize={20}
       width='auto'
