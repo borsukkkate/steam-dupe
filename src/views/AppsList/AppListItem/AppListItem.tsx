@@ -37,6 +37,7 @@ const AppListItem: React.FC<Props> = ({
           transform: 'scale(1.01)',
           transition: 'transform 200ms',
         }}
+        data-testid='app-list-item'
       >
         <Grid __css={styles} position={'relative'}>
           <GridItem area={'thumbnail'}>

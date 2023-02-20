@@ -9,7 +9,7 @@ import { ApiCategoryMap } from '@/shared/constants';
 import { IApp } from '@/shared/interfaces';
 import { getApplicationsList } from '@/api/apps.api';
 
-const useApps = () => {
+export const useApps = () => {
   const dispatch = useDispatch();
   const activeCategory = useSelector(
     (state: RootState) => state.apps.activeCategory

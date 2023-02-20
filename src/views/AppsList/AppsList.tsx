@@ -22,27 +22,31 @@ const AppsList = () => {
           />
         </Flex>
         <Grid __css={styles} data-testid='app-list'>
-          {apps.map(
-            ({
-              _id,
-              name,
-              price_overview,
-              header_image,
-              platforms,
-              developers,
-            }) => (
-              <Link to={`/app/${_id}`} key={_id}>
-                <AppListItem
-                  appInfo={{
-                    name,
-                    price_overview,
-                    header_image,
-                    platforms,
-                    developers,
-                  }}
-                />
-              </Link>
-            )
+          {Boolean(apps) && (
+            <>
+              {apps.map(
+                ({
+                  _id,
+                  name,
+                  price_overview,
+                  header_image,
+                  platforms,
+                  developers,
+                }) => (
+                  <Link to={`/app/${_id}`} key={_id}>
+                    <AppListItem
+                      appInfo={{
+                        name,
+                        price_overview,
+                        header_image,
+                        platforms,
+                        developers,
+                      }}
+                    />
+                  </Link>
+                )
+              )}
+            </>
           )}
         </Grid>
       </>
