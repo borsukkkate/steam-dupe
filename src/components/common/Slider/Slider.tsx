@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Direction } from '@/shared/constants';
+import Slide from './Slide/Slide';
 
 type Props = {
   slides: { id: string | number; src: string }[];
@@ -34,37 +34,16 @@ const Slider: React.FC<Props> = ({
     onSlideSelect(slides[nextSlideIdx].id);
   };
 
-  useEffect(() => {
-    const element = document.getElementById(`slider-img-${activeSlideId}`);
-
-    element?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    });
-  }, [activeSlideId]);
-
-  // TODO: Make slider work not only with images
-
   return (
     <Flex mt={2} flexDirection={'column'}>
       <Flex mt={2} overflow='scroll' id='media-slider'>
         {slides.map(({ id, src }) => (
-          <Image
-            id={`slider-img-${id}`}
-            cursor={'pointer'}
-            key={id}
+          <Slide
+            id={id}
             src={src}
-            h={['60px', '100px']}
-            mr={2}
-            onClick={() => onSlideSelect(id)}
-            borderRadius={4}
-            loading={'eager'}
-            filter={id === activeSlideId ? 'brightness(1)' : 'brightness(0.3)'}
-            _hover={{
-              filter:
-                id === activeSlideId ? 'brightness(1)' : 'brightness(0.5)',
-            }}
+            onSlideSelect={onSlideSelect}
+            activeSlideId={activeSlideId}
+            key={id}
           />
         ))}
       </Flex>
