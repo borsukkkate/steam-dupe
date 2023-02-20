@@ -12,7 +12,7 @@ interface IInfo {
   platforms: IPlatforms;
   developers: string[];
   publishers: string[];
-  price_overview: IPriceOverview;
+  price_overview?: IPriceOverview;
 }
 
 type Props = {
