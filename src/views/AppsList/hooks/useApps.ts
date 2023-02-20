@@ -50,7 +50,7 @@ export const useApps = () => {
       ? state.apps[activeCategory!].filter((app) =>
           app.name
             .toLowerCase()
-            .startsWith(state.apps.searchString.toLocaleLowerCase())
+            .includes(state.apps.searchString.toLocaleLowerCase())
         )
       : state.apps[activeCategory!];
   });
